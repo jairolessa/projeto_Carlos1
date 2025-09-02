@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paleta para Plataforma de Autismo</title>
+    <style>
+        :root {
+            --bg-primary: #F5F5F5;
+            --bg-secondary: #E0DED7;
+            --text-main: #424242;
+            --text-secondary: #A3A380;
+            --button-primary: #B1D6E8;
+            --button-secondary: #BB8588;
+            --borders: #A8B2A6;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .color-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 12px;
+            color: white;
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+
+        .ui-example {
+            background-color: white;
+            border: 1px solid var(--borders);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: var(--text-main);
+        }
+
+        h2 {
+            color: var(--text-secondary);
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: var(--button-primary);
+            color: #424242;
+        }
+
+        .btn-secondary {
+            background-color: var(--button-secondary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Paleta de Cores - Plataforma de Autismo</h1>
+        <p>Visualização das cores em contexto real:</p>
+
+        <div class="palette">
+            <div class="color-box" style="background-color: #F5F5F5;">F5F5F5<br>White Smoke</div>
+            <div class="color-box" style="background-color: #E0DED7;">E0DED7<br>Timberwolf</div>
+            <div class="color-box" style="background-color: #A8B2A6;">A8B2A6<br>Ash Gray</div>
+            <div class="color-box" style="background-color: #A3A380;">A3A380<br>Sage</div>
+            <div class="color-box" style="background-color: #B1D6E8;">B1D6E8<br>Columbia Blue</div>
+            <div class="color-box" style="background-color: #BB8588;">BB8588<br>Old Rose</div>
+            <div class="color-box" style="background-color: #424242; color: white;">424242<br>Gray</div>
+        </div>
+
+        <div class="ui-example">
+            <h2>Exemplo de Interface</h2>
+            <p>Texto principal usando a cor <strong>#424242</strong> sobre fundo branco.</p>
+            
+            <button class="btn btn-primary">Botão Primário (#B1D6E8)</button>
+            <button class="btn btn-secondary">Botão Secundário (#BB8588)</button>
+            
+            <div style="margin-top: 20px; padding: 15px; background-color: #E0DED7; border-radius: 8px;">
+                <p>Área com fundo secundário (#E0DED7) e texto em #424242.</p>
+            </div>
+        </div>
+    </div>
+
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vídeo Acessível - Plataforma Autismo</title>
+        <style>
+            :root {
+                --bg-primary: #F5F5F5;
+                --bg-secondary: #E0DED7;
+                --text-main: #424242;
+                --text-secondary: #A3A380;
+                --button-primary: #B1D6E8;
+                --button-secondary: #BB8588;
+                --borders: #A8B2A6;
+            }
+    
+            body {
+                font-family: 'Inter', Arial, sans-serif;
+                background-color: var(--bg-primary);
+                color: var(--text-main);
+                margin: 0;
+                padding: 20px;
+                line-height: 1.6;
+            }
+    
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+    
+            .video-container {
+                background-color: white;
+                border: 1px solid var(--borders);
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+    
+            .video-wrapper {
+                position: relative;
+                padding-bottom: 56.25%; /* Proporção 16:9 */
+                height: 0;
+                overflow: hidden;
+                margin-bottom: 15px;
+            }
+    
+            .video-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: 4px;
+            }
+    
+            .video-options {
+                display: flex;
+                gap: 10px;
+                margin: 15px 0;
+                flex-wrap: wrap;
+            }
+    
+            .video-options button, .transcript-link {
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: background-color 0.3s;
+            }
+    
+            .video-options button {
+                background-color: var(--button-primary);
+                color: var(--text-main);
+            }
+    
+            .video-options button:hover {
+                background-color: #9fc5e0;
+            }
+    
+            .transcript-link {
+                background-color: var(--button-secondary);
+                color: white;
+                text-decoration: none;
+                display: inline-block;
+            }
+    
+            .transcript-link:hover {
+                background-color: #aa7a7d;
+            }
+    
+            .content-warning {
+                background-color: #FFF8E1;
+                border-left: 4px solid #FFC107;
+                padding: 10px;
+                margin: 10px 0;
+                color: var(--text-main);
+                font-size: 14px;
+            }
+    
+            .transcript {
+                margin-top: 20px;
+                padding: 15px;
+                background-color: var(--bg-secondary);
+                border-radius: 4px;
+                display: none; /* Inicialmente oculto */
+            }
+    
+    
+            @media (max-width: 600px) {
+                .video-options {
+                    flex-direction: column;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="video-container">
+                <h2>Entrevista sobre Autismo</h2>
+                
+                <div class="video-wrapper">
+                    <!-- Vídeo do YouTube com recursos de acessibilidade -->
+                    <iframe src="https://www.youtube.com/embed/CSHx3OUkV40?si=mrqflH6boEEZ_hGa" 
+                            title="Autismo no Mercado de Trabalho" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            loading="lazy">
+                    </iframe>
+                </div>
+    
+                <div class="video-options">
+                    <button onclick="adjustSpeed(0.5)">0.5x Velocidade</button>
+                    <button onclick="adjustSpeed(0.75)">0.75x Velocidade</button>
+                    <button onclick="adjustSpeed(1)">Velocidade Normal</button>
+                    <button onclick="toggleCaptions()">Ativar Legendas</button>
+                    <a href="#transcript" class="transcript-link" onclick="toggleTranscript()">Ver Transcrição</a>
+                </div>
+    
+                <p class="content-warning">⚠️ Atenção: Este vídeo contém cenas com luzes pulsantes entre 1:10 e 1:30.</p>
+    
+                <div id="transcript" class="transcript">
+                    <h3>Transcrição do Vídeo</h3>
+                    <p><strong>[00:00] Host:</strong> Hoje chamamos a equipe da Econet para falar sobre inclusão de autistas adultos no mercado de trabalho...</p>
+                    <p><strong>[00:30] Dra. Ana:</strong> Deixa eu adivinhar. Você conhece, pelo menos uma pessoa diagnosticada no espectro autista...</p>
+                    <!-- Transcrição completa seria inserida aqui -->
+                    <button onclick="toggleTranscript()" style="margin-top: 10px;">Fechar Transcrição</button>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            // Funções para controle do vídeo
+            function adjustSpeed(speed) {
+                const iframe = document.querySelector('iframe');
+                iframe.contentWindow.postMessage({
+                    event: 'command',
+                    func: 'setPlaybackRate',
+                    args: [speed]
+                }, '*');
+                alert(`Velocidade ajustada para ${speed}x`);
+            }
+    
+            function toggleCaptions() {
+                const iframe = document.querySelector('iframe');
+                iframe.contentWindow.postMessage({
+                    event: 'command',
+                    func: 'toggleCaptions'
+                }, '*');
+            }
+    
+            function toggleTranscript() {
+                const transcript = document.getElementById('transcript');
+                transcript.style.display = transcript.style.display === 'block' ? 'none' : 'block';
+            }
+        </script>
+    </body>
+
+    <div class="tea-flavor" style="background-color: #B1D6E8;">
+        <h3>Chá de Borragem</h3>
+        <p>Recursos para acalmar: artigos e exercícios sensoriais.</p>
+      </div>
+    </html>
+</body>
+</html>

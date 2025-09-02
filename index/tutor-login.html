@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="file://C:\Users\silva\OneDrive\Documentos\TEAcup_imagens\TEACup-Logo.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>TEAcup - Login</title>
+    <link rel="stylesheet" href="css/tutor-cad.css">
+</head>
+<body>      
+    <div class="container decorative-corners">
+        <h1>Login</h1>
+        
+        <div class="stars">✶ ✶ ✶</div>
+        
+        <div class="vintage-pattern"></div>
+        
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" required>
+            </div>
+            
+            <div class="vintage-pattern"></div>
+            
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+        
+        <div class="stars">✶ ✶ ✶</div>
+
+
+        <script>
+            document.getElementById('registrationForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                alert('Formulário enviado com sucesso!');
+            });
+
+            
+        </script>
+    </div>    
+</body>
+</html>

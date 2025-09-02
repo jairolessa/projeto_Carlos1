@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Portal TEAcup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8ddd4 100%);
+            min-height: 100vh;
+            color: #5a5a5a;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #a8a081 0%, #9b9370 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="70" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-style: italic;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-style: italic;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #d4b5a0 0%, #c4a085 100%);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(168, 160, 129, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #d4b5a0 0%, #c4a085 50%, #d4b5a0 100%);
+        }
+
+        .card h2 {
+            color: #8b7d6b;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-group {
+            margin-bottom: 25px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #8b7d6b;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .info-value {
+            color: #5a5a5a;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #e8c4a0 0%, #d4b5a0 100%);
+            color: #8b7d6b;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 2px 4px;
+            border: 1px solid rgba(139, 125, 107, 0.3);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .quick-actions {
+            background: linear-gradient(135deg, #a8a081 0%, #9b9370 100%);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            text-align: center;
+        }
+
+        .quick-actions h3 {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-section h3 {
+            color: #8b7d6b;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .progress-item {
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            font-size: 0.9em;
+            color: #8b7d6b;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4b5a0 0%, #c4a085 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .decorative-element {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+            opacity: 0.1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>') center/contain no-repeat;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Meu Perfil</h1>
+        <p>Acompanhe o desenvolvimento e gerencie informações</p>
+        <div class="profile-avatar">
+            👤
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="card">
+                <div class="decorative-element"></div>
+                <h2>💝 Informações Pessoais</h2>
+                
+                <div class="info-group">
+                    <div class="info-label">Nome Completo</div>
+                    <div class="info-value">Maria Helena Santos Silva</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">E-mail</div>
+                    <div class="info-value">maria.helena@email.com</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Telefone</div>
+                    <div class="info-value">(11) 99876-5432</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Relacionamento</div>
+                    <div class="info-value">Mãe</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Cidade</div>
+                    <div class="info-value">São Paulo, SP</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌟 Informações da Pessoa com TEA</h2>
+                
+                <div class="info-group">
+                    <div class="info-label">Nome</div>
+                    <div class="info-value">João Pedro Santos Silva</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Idade</div>
+                    <div class="info-value">8 anos</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Data de Nascimento</div>
+                    <div class="info-value">15 de março de 2017</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Diagnóstico</div>
+                    <div class="info-value">Transtorno do Espectro Autista (TEA) - Nível 1 de suporte</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Data do Diagnóstico</div>
+                    <div class="info-value">Janeiro de 2021</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Escola</div>
+                    <div class="info-value">Escola Municipal Professor Carlos Drummond de Andrade</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Interesses e Características</h2>
+                
+                <div class="info-group">
+                    <div class="info-label">Principais Interesses</div>
+                    <div class="info-value">
+                        <span class="tag">Dinossauros</span>
+                        <span class="tag">Matemática</span>
+                        <span class="tag">Construção com blocos</span>
+                        <span class="tag">Desenho</span>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Pontos Fortes</div>
+                    <div class="info-value">
+                        <span class="tag">Excelente memória</span>
+                        <span class="tag">Habilidades visuais</span>
+                        <span class="tag">Atenção aos detalhes</span>
+                        <span class="tag">Pensamento lógico</span>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Áreas de Desenvolvimento</div>
+                    <div class="info-value">
+                        <span class="tag">Comunicação social</span>
+                        <span class="tag">Flexibilidade</span>
+                        <span class="tag">Coordenação motora</span>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Sensibilidades</div>
+                    <div class="info-value">
+                        <span class="tag">Ruídos altos</span>
+                        <span class="tag">Texturas específicas</span>
+                        <span class="tag">Mudanças bruscas de rotina</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>👥 Equipe de Apoio</h2>
+                
+                <div class="info-group">
+                    <div class="info-label">Terapeutas</div>
+                    <div class="info-value">
+                        • Dra. Ana Beatriz - Psicóloga<br>
+                        • Carlos Eduardo - Fonoaudiólogo<br>
+                        • Fernanda Lima - Terapeuta Ocupacional
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Escola</div>
+                    <div class="info-value">
+                        • Professora Regina - Classe regular<br>
+                        • Paula Santos - Auxiliar de apoio<br>
+                        • Coordenadora pedagógica: Márcia
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="quick-actions">
+                <h3>🚀 Ações Rápidas</h3>
+                <button class="btn">Editar Perfil</button>
+                <button class="btn">Ver Relatórios</button>
+                <button class="btn">Agendar Consulta</button>
+                <button class="btn">Contatos Importantes</button>
+                <button class="btn">Configurações</button>
+            </div>
+
+            <div class="progress-section">
+                <h3>📈 Progresso Atual</h3>
+                
+                <div class="progress-item">
+                    <div class="progress-label">Comunicação</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">Socialização</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">Autonomia</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">Aprendizado</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="text-align: center; padding: 20px;">
+                <h3 style="color: #8b7d6b; font-style: italic; margin-bottom: 15px;">💌 Mensagem do Dia</h3>
+                <p style="font-style: italic; color: #666; line-height: 1.6;">
+                    "Cada pequeno progresso é uma vitória que merece ser celebrada. Você está fazendo um trabalho incrível!"
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="file://C:\Users\silva\OneDrive\Documentos\TEAcup_imagens\TEACup-Logo.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>TEAcup - Cadastro</title>
+    <link rel="stylesheet" href="css/tutor-cad.css">
+</head>
+<body>      
+    <div class="container decorative-corners">
+        <h1>Cadastro de Dependente</h1>
+        
+        <div class="stars">✶ ✶ ✶</div>
+        
+        <div class="vintage-pattern"></div>
+        
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="data_nascimento">Data de Nascimento</label>
+                    <input type="date" id="data_nascimento" name="data_nascimento" required>
+                </div>
+
+                 <div class="form-group">
+                            <label for="genero">Gênero</label>
+                            <select id="genero" class="form-control" required>
+                                <option value="">Selecione uma opção...</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="outro">Outro</option>
+                                <option value="nao-informar">Prefiro não informar</option>
+                            </select>
+                        </div>
+
+            </div>
+            
+            <div class="col-2">
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="text" id="cep" name="cep" placeholder="00000-000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefone">Telefone de Contato</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="endereco-container">
+                    <div class="endereco-titulo">Informações de Endereço</div>
+                    
+                    <div class="endereco-grupo endereco-full-width">
+                        <label for="endereco">Logradouro</label>
+                        <input type="text" id="endereco" name="endereco">
+                    </div>
+                    
+                    <div class="endereco-grupo numero">
+                        <label for="numero">Número</label>
+                        <input type="text" id="numero" name="numero">
+                    </div>
+                    
+                    <div class="endereco-grupo">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro">
+                    </div>
+                    
+                    <div class="endereco-grupo">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" id="cidade" name="cidade">
+                    </div>
+                    
+                    <div class="endereco-grupo">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado">
+                            <option value="">Selecione uma opção...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>  
+                <div class="col-3">
+                    <div class="form-group">
+                            <label for="parentesco">Natureza do Vínculo</label>
+                            <select id="parentesco" class="form-control" required>
+                                <option value="">Selecione uma opção...</option>
+                                <option value="filho">Genitor</option>
+                                <option value="enteado">Conjuge</option>
+                                <option value="neto">Filho(a)</option>
+                                <option value="sobrinho">Responsável Legal</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parentesco">Nível de Suporte</label>
+                            <select id="parentesco" class="form-control" required>
+                                <option value="">Selecione uma opção...</option>
+                                <option value="filho">Nível 1 (Suporte Leve)</option>
+                                <option value="enteado">Nível 2 (Suporte Moderado)</option>
+                                <option value="neto">Nível 3 (Suporte Severo)</option>
+                                <option value="outro">Prefiro não Responder</option>
+                            </select>
+                        </div>
+                </div>  
+                        
+                        <div class="form-group">
+                            <label for="escola">Instituição de Ensino (se houver)</label>
+                            <input type="text" id="escola" class="form-control">
+                        </div>
+                 
+                    
+                    <div class="form-group">
+                        <label for="info-saude">Informações de Saúde (alergias, medicações, etc.)</label>
+                        <textarea id="info-saude" class="form-control" rows="3"></textarea>
+                    </div>
+                
+                <div class="col-4">    
+                    <div class="form-group">
+                        <label for="contato-emergencia">Contato de Emergência (além do tutor)</label>
+                        <input type="text" id="contato-emergencia" class="form-control" placeholder="(00) 00000-0000">
+                    </div> 
+
+                    <div class="form-group">
+                        <label for="laudo-doc">Anexe o laudo de diagnóstico</label>
+                        <textarea id="laudo-doc" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>                      
+            
+            <div class="vintage-pattern"></div>
+            
+            <button type="submit" class="btn">Cadastrar</button>
+        </form>
+        
+        <div class="stars">✶ ✶ ✶</div>
+
+
+        <script>
+            document.getElementById('registrationForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                alert('Formulário enviado com sucesso!');
+            });
+
+            //CPF
+            document.getElementById('cpf').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                
+                if (value.length > 9) {
+                    value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, '$1.$2.$3-$4');
+                } else if (value.length > 6) {
+                    value = value.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, '$1.$2.$3');
+                } else if (value.length > 3) {
+                    value = value.replace(/^(\d{3})(\d{0,3}).*/, '$1.$2');
+                }
+                
+                e.target.value = value;
+            });
+
+            //CEP
+            document.getElementById('cep').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 8) value = value.slice(0, 8);
+                
+                if (value.length > 5) {
+                    value = value.replace(/^(\d{5})(\d{0,3}).*/, '$1-$2');
+                }
+                
+                e.target.value = value;
+            });
+
+            //TELEFONE
+            document.getElementById('telefone').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                
+                if (value.length > 10) {
+                    value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+                } else if (value.length > 6) {
+                    value = value.replace(/^(\d{2})(\d{4,5})(\d{0,4}).*/, '($1) $2-$3');
+                } else if (value.length > 2) {
+                    value = value.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
+                }
+                
+                e.target.value = value;
+            });
+        </script>
+    </div>    
+</body>
+</html>

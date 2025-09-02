@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="file://C:\Users\silva\OneDrive\Documentos\TEAcup_imagens\TEACup-Logo.svg" type="image/svg+xml">
+    <title>Relato do Dia</title>
+    <link rel="stylesheet" href="css/story.css">
+</head>
+<body>
+    <div class="container">
+        <div class="white-heart"></div>
+        
+        <header class="header">
+            <h1>Relato do Dia</h1>
+            <img src="imagestea/white-heart.webp" class="white-heart" alt="Small pin of a white heart.">
+            <p class="subtitle">Páginas de vida no espectro autista</p>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">Todos os Relatos</a>
+                <a href="#" class="nav-item">Relatos Recentes</a>
+                <a href="#" class="nav-item">Pessoal</a>
+                <a href="#" class="nav-item">Educação</a>
+                <a href="#" class="nav-item">Família</a>
+            </nav>
+        </header>
+
+        <!-- Relato Principal do Dia -->
+            <section class="featured-story-internal">
+                <span class="featured-badge">Relato Principal do Dia</span>
+                <h2 class="featured-story-title">A descoberta que mudou nossa perspectiva familiar</h2>
+                <div class="featured-story-meta">
+                    <span class="featured-story-author">João Pereira, 23 anos</span>
+                    <span class="featured-story-category">Pessoal</span>
+                    <span>30 de agosto, 2025</span>
+                </div>
+                <div class="featured-story-content">
+                    Sempre vi o mundo de uma maneira diferente. As cores para mim têm sons, os padrões têm
+                    significados que só eu compreendo. Quando criança, isso me isolava, mas hoje entendo que
+                minha percepção única é parte do que me torna especial. Minha jornada no espectro autista não
+                é sobre limitações, mas sobre descobrir talentos e formas únicas de conexão.
+                Lembro-me dos dias em que o barulho da escola era ensurdecedor, quando cada luz
+                fluorescente parecia gritar comigo. Mas também me lembro da primeira vez que consegui
+                explicar para alguém como vejo os números - não apenas como símbolos, mas como
+                personalidades com cores e texturas próprias.
+                Hoje, trabalho com programação e descobri que minha forma de pensar, que antes era vista
+                como "diferente", é na verdade um superpoder no mundo da tecnologia. Consigo ver padrões
+                onde outros não veem, encontrar soluções criativas para problemas complexos.
+                Ainda tenho meus desafios. As interações sociais às vezes são como tentar decifrar um
+                código sem manual. Mas aprendi que está tudo bem pedir ajuda, está tudo bem ser eu mesmo. E
+                descobri que existem pessoas dispostas a entender, a aprender sobre meu mundo tanto quanto
+                eu aprendo sobre o deles.
+                Para quem está lendo isso e se identifica: você não está sozinho. Sua forma de ver o mundo
+                é válida, é importante, é bela. Para quem está tentando entender alguém no espectro: obrigado
+                por se interessar, por querer construir pontes ao invés de muros.
+                </div>
+                <div class="featured-story-tags">
+                    <span class="featured-tag">Diagnóstico</span>
+                    <span class="featured-tag">Aceitação</span>
+                    <span class="featured-tag">Família</span>
+                    <span class="featured-tag">Neurodiversidade</span>
+                </div>
+            </section>
+
+     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-top: 40px;">
+                <div>
+                    <h2 class="section-title">Relato do dia</h2>
+                    
+                    <!-- Formulário para compartilhar história -->
+                    <div class="share-story-form">
+                        <h3 style="color: #909071; margin-bottom: 20px;">Compartilhe sua experiência</h3>
+                        <form id="storyForm">
+                            <div class="form-group">
+                                <label class="form-label" for="authorName">Nome (opcional)</label>
+                                <input type="text" id="authorName" class="form-input" placeholder="Como gostaria de ser identificado?">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="storyCategory">Categoria da experiência</label>
+                                <select id="storyCategory" class="form-select">
+                                    <option value="">Selecione uma categoria</option>
+                                    <option value="diagnostico">Diagnóstico</option>
+                                    <option value="escola">Escola e Educação</option>
+                                    <option value="familia">Família e Relacionamentos</option>
+                                    <option value="trabalho">Trabalho e Carreira</option>
+                                    <option value="terapias">Terapias e Intervenções</option>
+                                    <option value="conquistas">Conquistas e Progressos</option>
+                                    <option value="desafios">Desafios do Dia a Dia</option>
+                                    <option value="sensorial">Experiências Sensoriais</option>
+                                    <option value="social">Interações Sociais</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="storyTitle">Título da sua história</label>
+                                <input type="text" id="storyTitle" class="form-input" placeholder="Ex: Minha primeira apresentação na escola">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="storyContent">Conte sua experiência</label>
+                                <textarea id="storyContent" class="form-textarea" placeholder="Compartilhe sua história, desafio superado, momento especial ou experiência que possa inspirar ou ajudar outros..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Compartilhar Relato</button>
+                        </form>
+                    </div>
+
+                    <!-- Histórias compartilhadas -->
+                    <div id="storiesContainer">
+                        <div class="story-card">
+                            <div class="story-header">
+                                <span class="story-author">Maria S.</span>
+                                <span class="story-date">29 de agosto, 2025</span>
+                            </div>
+                            <span class="story-category">Conquistas</span>
+                            <h3 class="story-title">Primeira vez no cinema</h3>
+                            <p class="story-content">
+                                Hoje meu filho de 8 anos foi ao cinema pela primeira vez! Preparamos durante semanas, assistindo vídeos sobre como é o cinema, praticando ficar sentado no escuro. Ele levou seus fones de proteção auditiva e conseguiu assistir quase todo o filme. Foi emocionante ver o sorriso dele quando as luzes se acenderam.
+                            </p>
+                            <div class="story-tags">
+                                <span class="story-tag">Cinema</span>
+                                <span class="story-tag">Preparação</span>
+                                <span class="story-tag">Conquista</span>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-header">
+                                <span class="story-author">Roberto M.</span>
+                                <span class="story-date">26 de agosto, 2025</span>
+                            </div>
+                            <span class="story-category">Sensorial</span>
+                            <h3 class="story-title">Descobrindo meus próprios limites sensoriais</h3>
+                            <p class="story-content">
+                                Aos 35 anos, finalmente entendi por que certos lugares me deixavam exausto. Após o diagnóstico tardio, comecei a mapear meus gatilhos sensoriais e criar estratégias. Hoje sei quando preciso de uma pausa e não me sinto mais culpado por isso.
+                            </p>
+                            <div class="story-tags">
+                                <span class="story-tag">Diagnóstico Tardio</span>
+                                <span class="story-tag">Autoconhecimento</span>
+                                <span class="story-tag">Sobrecarga Sensorial</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="load-more-btn" onclick="loadMoreStories()">Carregar mais relatos</button>
+                </div>
+
+                <aside class="sidebar">
+                <div class="search-box">
+                    <h3 class="sidebar-title">Buscar Relatos</h3>
+                    <input type="text" class="search-input" placeholder="Digite palavras-chave...">
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Mais Populares</h3>
+                    <ul class="recent-articles">
+                        <li><a href="#">Conquistas e Progressos</a></li>
+                        <li><a href="#">Escola e Educação</a></li>
+                        <li><a href="#">Família e Relacionamentos</a></li>
+                        <li><a href="#">Diagnóstico</a></li>
+                        <li><a href="#">Experiências Sensoriais</a></li>
+                        <li><a href="#">Trabalho e Carreira</a></li>
+                        <li><a href="#">Terapias e Intervenções</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Relatos em Destaque</h3>
+                    <ul class="categories">
+                        <li><a href="#">Como a música mudou nossa rotina</a></li>
+                        <li><a href="#">Primeira viagem de avião: dicas práticas</a></li>
+                        <li><a href="#">Construindo amizades na adolescência</a></li>
+                        <li><a href="#">Meu filho ensinou a professora sobre autismo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="newsletter-box">
+                        <h4 class="newsletter-title">Newsletter Relatos</h4>
+                        <p class="newsletter-text">Receba os relatos mais inspiradores diretamente no seu e-mail.</p>
+                        <input type="email" class="newsletter-input" placeholder="Seu e-mail">
+                        <button class="newsletter-btn">Inscrever-se</button>
+                    </div>
+                </div>
+            </aside>
+            </div>   
+            </main>
+        </div>    
+            
+        </div>
+    </div>
+    </div>
+</div>    
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-box').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const articles = document.querySelectorAll('.article-card');
+            
+            articles.forEach(article => {
+                const title = article.querySelector('.article-title').textContent.toLowerCase();
+                const abstract = article.querySelector('.article-abstract').textContent.toLowerCase();
+                const authors = article.querySelector('.article-authors').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || abstract.includes(searchTerm) || authors.includes(searchTerm)) {
+                    article.style.display = 'block';
+                    article.style.opacity = '1';
+                } else {
+                    article.style.opacity = searchTerm ? '0.3' : '1';
+                }
+            });
+        });
+        
+        // Tag filtering
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const tagText = this.textContent.toLowerCase();
+                const articles = document.querySelectorAll('.article-card');
+                
+                // Reset all articles
+                articles.forEach(article => {
+                    article.style.display = 'block';
+                    article.style.opacity = '0.3';
+                });
+                
+                // Highlight articles with matching tags
+                articles.forEach(article => {
+                    const tags = Array.from(article.querySelectorAll('.tag'));
+                    const hasMatchingTag = tags.some(t => t.textContent.toLowerCase() === tagText);
+                    
+                    if (hasMatchingTag) {
+                        article.style.opacity = '1';
+                    }
+                });
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    articles.forEach(article => {
+                        article.style.opacity = '1';
+                    });
+                }, 3000);
+            });
+        });
+        
+        // Navigation menu
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                
+                this.classList.add('active');
+                
+            });
+        });
+        
+        // Newsletter subscription
+        document.querySelector('.newsletter-btn').addEventListener('click', function() {
+            const email = document.querySelector('.newsletter-input').value;
+            if (email && email.includes('@')) {
+                alert('Obrigado por se inscrever! Você receberá nossas atualizações em breve.');
+                document.querySelector('.newsletter-input').value = '';
+            } else {
+                alert('Por favor, insira um e-mail válido.');
+            }
+        });
+        
+        // Article title click effect
+        document.querySelectorAll('.article-title').forEach(title => {
+            title.addEventListener('click', function() {
+                // Simulate opening article
+                this.style.color = '#8b7355';
+                setTimeout(() => {
+                    this.style.color = '#6b5a45';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

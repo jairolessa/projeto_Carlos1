@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missão Pãozinho - Sistema de Gamificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #fff5e6;
+            --paper: #f8f1e0;
+            --bread: #f8cb86;
+            --bread-dark: #8b4513;
+            --accent: #c87137;
+            --text: #5c4b32;
+            --shadow: rgba(92, 75, 50, 0.2);
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background-color: var(--cream);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--paper);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--shadow);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            border: 1px solid rgba(92, 75, 50, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent), var(--bread));
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px var(--shadow);
+        }
+
+        /* BARRA DE PROGRESSO ESTILIZADA */
+        .progress-bar-container {
+            width: 100%;
+            height: 20px;
+            background-color: #e0d8c0;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(92, 75, 50, 0.2);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--accent), var(--bread));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .progress {
+            margin: 10px 0;
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.1em;
+            font-style: italic;
+        }
+
+        /* Restante do CSS permanece igual */
+        .bread-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 25px;
+        }
+
+        .mini-bread {
+            width: 60px;
+            height: 60px;
+            background-color: #e0d8c0;
+            border-radius: 30px 30px 15px 15px;
+            position: relative;
+            transition: all 0.4s ease;
+            opacity: 0.6;
+
+            box-shadow: inset 0 0 10px rgba(92, 75, 50, 0.2);
+            border: 1px solid rgba(92, 75, 50, 0.1);
+        }
+
+        .mini-bread.earned {
+            background-color: var(--bread);
+            opacity: 1;
+            transform: translateY(-5px) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(200, 113, 55, 0.4);
+            border: 1px solid var(--accent);
+        }
+
+        .mini-bread::before, 
+        .mini-bread::after {
+        background-color: #c87137; /* Cor do grânulo original */
+        opacity: 0.7; /* Transparência igual à versão anterior */
+}
+
+        .tasks {
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px dashed rgba(92, 75, 50, 0.2);
+            transition: all 0.3s;
+        }
+
+        .reset-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px var(--shadow);
+        }
+
+        .reset-btn:hover {
+            background-color: #a45a2a;
+            transform: translateY(-2px);
+        }
+
+        .reward-message {
+            background-color: #fdf1e0;
+            border: 2px dashed #c87137;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #f8cb86;
+            }
+            to {
+                box-shadow: 0 0 15px #e9a368;
+            }
+        }
+        
+        .reward-message h3 {
+            color: #c87137;
+            margin-top: 0;
+        }
+        
+        .reward-message p {
+            margin-bottom: 0;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ff0000;
+            animation: confetti-fall 5s linear forwards;
+            z-index: 999;
+            opacity: 0.8;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Missão Pãozinho</h1>
+        <p>Complete atividades diárias para ganhar mini pães!</p>
+        
+        <div class="bread-container">
+            <div class="mini-bread" id="bread1"></div>
+            <div class="mini-bread" id="bread2"></div>
+            <div class="mini-bread" id="bread3"></div>
+        </div>
+        
+        <div class="reward-message" id="rewardMessage">
+            <h3>🎉 Parabéns! 🎉</h3>
+            <p>Você completou todas as tarefas do dia e ganhou todos os pãezinhos!</p>
+            <p>Continue assim para manter seus hábitos saudáveis!</p>
+        </div>
+
+        <div class="progress" id="progress">0/3 pães conquistados</div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="tasks">
+            <div class="task">
+                <input type="checkbox" id="task1" onchange="updateProgress()">
+                <label for="task1">Completar exercício físico</label>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task2" onchange="updateProgress()">
+                <label for="task2">Beber 2L de água</label>
+            </div>
+            <div class="task">
+                <input type="checkbox" id="task3" onchange="updateProgress()">
+                <label for="task3">Ler por 30 minutos</label>
+            </div>
+        </div>
+        
+        <button class="reset-btn" onclick="resetTasks()">Reiniciar</button>
+    </div>
+
+    <script>
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            checkbox.checked = !checkbox.checked;
+            updateProgress();
+        }
+        
+        function createConfetti() {
+            const colors = ["#f8cb86", "#c87137", "#e9a368", "#9c5518", "#ffaa33"];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement("div");
+                    confetti.className = "confetti";
+                    
+                    // Random position
+                    const posX = Math.random() * window.innerWidth;
+                    confetti.style.left = posX + "px";
+                    
+                    // Random size
+                    const size = Math.random() * 8 + 6;
+                    confetti.style.width = size + "px";
+                    confetti.style.height = size + "px";
+                    
+                    // Random color
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.backgroundColor = color;
+                    
+                    // Random rotation
+                    confetti.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                    
+                    // Random shape (square, circle, or triangle)
+                    const shape = Math.floor(Math.random() * 3);
+                    if (shape === 0) {
+                        confetti.style.borderRadius = "50%";
+                    } else if (shape === 1) {
+                        confetti.style.borderRadius = "0";
+                    } else {
+                        confetti.style.width = "0";
+                        confetti.style.height = "0";
+                        confetti.style.backgroundColor = "transparent";
+                        confetti.style.borderLeft = size/2 + "px solid transparent";
+                        confetti.style.borderRight = size/2 + "px solid transparent";
+                        confetti.style.borderBottom = size + "px solid " + color;
+                    }
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation completes
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 6000);
+                }, i * 50);
+            }
+        }
+
+        function updateProgress() {
+            let count = 0;
+            const totalTasks = 3;
+            
+            if (document.getElementById('task1').checked) count++;
+            if (document.getElementById('task2').checked) count++;
+            if (document.getElementById('task3').checked) count++;
+            
+            // Atualiza pães visuais
+            for (let i = 1; i <= totalTasks; i++) {
+                const bread = document.getElementById('bread' + i);
+                if (i <= count) {
+                    bread.classList.add('earned');
+                } else {
+                    bread.classList.remove('earned');
+                }
+            }
+            
+            // Atualiza texto de progresso
+            document.getElementById('progress').innerText = count + "/" + totalTasks + " pães conquistados";
+            
+            // Atualiza barra de progresso (33.33% por tarefa)
+            const progressPercentage = (count / totalTasks) * 100;
+            document.getElementById('progressBar').style.width = progressPercentage + "%";
+            
+            // Salva estado
+            localStorage.setItem('taskState', JSON.stringify({
+                task1: document.getElementById('task1').checked,
+                task2: document.getElementById('task2').checked,
+                task3: document.getElementById('task3').checked
+            }));
+        }
+        
+        function resetTasks() {
+            document.getElementById('task1').checked = false;
+            document.getElementById('task2').checked = false;
+            document.getElementById('task3').checked = false;
+            updateProgress();
+        }
+        
+        // Carrega estado salvo
+        window.onload = function() {
+            const savedState = localStorage.getItem('taskState');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                document.getElementById('task1').checked = state.task1;
+                document.getElementById('task2').checked = state.task2;
+                document.getElementById('task3').checked = state.task3;
+                updateProgress();
+            }
+        };
+    </script>
+</body>
+</html>

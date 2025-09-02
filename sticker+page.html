@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Moldura Ovalada</title>
+  <style>
+   
+body {
+      background-color: #d3dbe8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+.vintage-badge {
+  width: 300px;
+  margin: 0 auto;
+  border: 3px solid #d4af37; 
+  border-radius: 15px;
+  position: relative;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 0;
+  font-family: 'Times New Roman', serif;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.vintage-badge::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.badge-top {
+  padding: 20px 15px 10px;
+}
+
+.badge-top span {
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: #d4af37;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.badge-top h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.badge-divider {
+  height: 2px;
+  background: linear-gradient(to right, 
+    transparent 10%, 
+    #d4af37 50%, 
+    transparent 90%);
+  margin: 0 15px;
+}
+
+.badge-bottom {
+  padding: 10px 15px 20px;
+}
+
+.badge-bottom span {
+  font-style: italic;
+  color: #d4af37;
+  font-size: 0.9rem;
+}
+
+.badge-bottom p {
+  margin: 5px 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+   </style>
+</head>
+<body>
+
+  <div class="vintage-badge">
+    <div class="badge-top">
+      <span>The</span>
+      <h1>CLUBHOUSE</h1>
+    </div>
+    <div class="badge-divider"></div>
+    <div class="badge-bottom">
+      <span>at Talons</span>
+      <p>REGAL EVENTS CENTRAL IOWA</p>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Progresso - Portal TEAcup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8ddd4 100%);
+            min-height: 100vh;
+            color: #5a5a5a;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #a8a081 0%, #9b9370 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="70" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            font-style: italic;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-style: italic;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(168, 160, 129, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #d4b5a0 0%, #c4a085 50%, #d4b5a0 100%);
+        }
+
+        .card h2 {
+            color: #8b7d6b;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #8b7d6b;
+            font-size: 0.9em;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            padding: 12px;
+            border: 2px solid #e8ddd4;
+            border-radius: 8px;
+            font-family: Georgia, serif;
+            font-size: 0.95em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #c4a085;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .rating-scale {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .rating-option {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e8ddd4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #8b7d6b;
+        }
+
+        .rating-option:hover {
+            border-color: #c4a085;
+            background: #f9f6f2;
+        }
+
+        .rating-option.selected {
+            background: linear-gradient(135deg, #d4b5a0 0%, #c4a085 100%);
+            border-color: #c4a085;
+            color: white;
+        }
+
+        .tag-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #666;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .tag.selected {
+            background: linear-gradient(135deg, #e8c4a0 0%, #d4b5a0 100%);
+            color: #8b7d6b;
+            border-color: #c4a085;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #a8a081 0%, #9b9370 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: Georgia, serif;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(168, 160, 129, 0.3);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .progress-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(168, 160, 129, 0.2);
+        }
+
+        .progress-summary h3 {
+            color: #8b7d6b;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .summary-value {
+            font-weight: bold;
+            color: #8b7d6b;
+        }
+
+        .recent-entries {
+            background: linear-gradient(135deg, #f9f6f2 0%, #f5f0e8 100%);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(168, 160, 129, 0.2);
+        }
+
+        .recent-entries h3 {
+            color: #8b7d6b;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .entry-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #d4b5a0;
+        }
+
+        .entry-date {
+            font-size: 0.75em;
+            color: #999;
+            font-style: italic;
+        }
+
+        .entry-text {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        .decorative-heart {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 25px;
+            height: 25px;
+            opacity: 0.1;
+            color: #d4b5a0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+
+            .rating-scale {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Registro de Progresso</h1>
+        <p>Acompanhe cada conquista no desenvolvimento</p>
+    </div>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="card">
+                <div class="decorative-heart">💝</div>
+                <h2>📊 Nova Entrada de Progresso</h2>
+                
+                <form class="progress-form">
+                    <div class="form-group">
+                        <label class="form-label">Data da Observação</label>
+                        <input type="date" class="form-input" value="2025-05-28">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Área de Desenvolvimento</label>
+                        <select class="form-select">
+                            <option>Selecione uma área</option>
+                            <option>Comunicação</option>
+                            <option>Socialização</option>
+                            <option>Comportamento</option>
+                            <option>Autonomia</option>
+                            <option>Aprendizado Acadêmico</option>
+                            <option>Coordenação Motora</option>
+                            <option>Regulação Sensorial</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Descrição do Progresso</label>
+                        <textarea class="form-textarea" placeholder="Descreva detalhadamente o que foi observado, o contexto e as conquistas..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nível de Progresso</label>
+                        <div class="rating-scale">
+                            <span style="font-size: 0.8em; color: #666;">Pouco</span>
+                            <div class="rating-option" data-value="1">1</div>
+                            <div class="rating-option" data-value="2">2</div>
+                            <div class="rating-option selected" data-value="3">3</div>
+                            <div class="rating-option" data-value="4">4</div>
+                            <div class="rating-option" data-value="5">5</div>
+                            <span style="font-size: 0.8em; color: #666;">Muito</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Contexto</label>
+                        <div class="tag-selector">
+                            <span class="tag selected">Em casa</span>
+                            <span class="tag">Na escola</span>
+                            <span class="tag">Na terapia</span>
+                            <span class="tag">Ambiente social</span>
+                            <span class="tag">Atividade estruturada</span>
+                            <span class="tag">Brincadeira livre</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Observações Adicionais</label>
+                        <textarea class="form-textarea" placeholder="Estratégias que funcionaram, dificuldades encontradas, próximos passos..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Salvar Registro</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>📈 Gráfico de Progresso</h2>
+                <div style="background: linear-gradient(135deg, #f9f6f2 0%, #f5f0e8 100%); padding: 40px; border-radius: 10px; text-align: center; color: #8b7d6b; font-style: italic;">
+                    <p>📊 Visualização dos progressos por área de desenvolvimento</p>
+                    <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.7;">Gráfico interativo será exibido aqui</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📝 Histórico de Registros</h2>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div class="entry-item">
+                        <div class="entry-date">25 de Maio, 2025</div>
+                        <div style="font-weight: bold; color: #8b7d6b; font-size: 0.9em; margin: 5px 0;">Comunicação - Nível 4</div>
+                        <div class="entry-text">João Pedro conseguiu expressar seus desejos usando frases completas durante o lanche. Disse "Eu quero mais água, por favor" sem ajuda visual.</div>
+                        <div class="tag-selector" style="margin-top: 8px;">
+                            <span class="tag selected">Em casa</span>
+                            <span class="tag selected">Atividade estruturada</span>
+                        </div>
+                    </div>
+
+                    <div class="entry-item">
+                        <div class="entry-date">22 de Maio, 2025</div>
+                        <div style="font-weight: bold; color: #8b7d6b; font-size: 0.9em; margin: 5px 0;">Socialização - Nível 3</div>
+                        <div class="entry-text">Iniciou interação com colega no parquinho, compartilhou brinquedo espontaneamente e manteve brincadeira cooperativa por 10 minutos.</div>
+                        <div class="tag-selector" style="margin-top: 8px;">
+                            <span class="tag selected">Na escola</span>
+                            <span class="tag selected">Brincadeira livre</span>
+                        </div>
+                    </div>
+
+                    <div class="entry-item">
+                        <div class="entry-date">20 de Maio, 2025</div>
+                        <div style="font-weight: bold; color: #8b7d6b; font-size: 0.9em; margin: 5px 0;">Autonomia - Nível 5</div>
+                        <div class="entry-text">Completou toda a rotina matinal independentemente: escovou os dentes, vestiu o uniforme e organizou a mochila sem nenhum lembrete.</div>
+                        <div class="tag-selector" style="margin-top: 8px;">
+                            <span class="tag selected">Em casa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="progress-summary">
+                <h3>📊 Resumo do Mês</h3>
+                <div class="summary-item">
+                    <span class="summary-label">Total de Registros</span>
+                    <span class="summary-value">12</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Média de Progresso</span>
+                    <span class="summary-value">3.8/5</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Área Destacada</span>
+                    <span class="summary-value">Autonomia</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Próximo Objetivo</span>
+                    <span class="summary-value">Comunicação</span>
+                </div>
+            </div>
+
+            <div class="recent-entries">
+                <h3>🎯 Metas da Semana</h3>
+                <div class="entry-item">
+                    <div style="font-weight: bold; color: #8b7d6b; font-size: 0.9em;">Comunicação</div>
+                    <div class="entry-text">Usar "por favor" e "obrigado" em 5 situações diferentes</div>
+                </div>
+                <div class="entry-item">
+                    <div style="font-weight: bold; color: #8b7d6b; font-size: 0.9em;">Socialização</div>
+                    <div class="entry-text">Iniciar uma brincadeira com colega na escola</div>
+                </div>
+                <div class="entry-item">
+                    <div style="font-weight: bold; color: #8b7d6b; font-size: 0.9em;">Autonomia</div>
+                    <div class="entry-text">Preparar lanche simples sozinho</div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #a8a081 0%, #9b9370 100%); border-radius: 15px; padding: 20px; color: white; text-align: center;">
+                <h3 style="font-style: italic; margin-bottom: 15px;">💌 Dica do Dia</h3>
+                <p style="font-style: italic; font-size: 0.9em; line-height: 1.5;">
+                    "Registre também os pequenos momentos. Às vezes, os maiores progressos estão nos detalhes do dia a dia."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Funcionalidade para a escala de avaliação
+        document.querySelectorAll('.rating-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.rating-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Funcionalidade para seleção de tags
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+        });
+
+        // Funcionalidade do formulário
+        document.querySelector('.progress-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Registro salvo com sucesso! 🎉');
+        });
+    </script>
+</body>
+</html>

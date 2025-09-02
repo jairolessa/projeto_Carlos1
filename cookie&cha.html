@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie de Respiração - Chá da Tarde</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5e9d7;
+            transition: background-color 2s;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .cookie {
+            width: 200px;
+            height: 200px;
+            background-color: #d4a76a;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 30px;
+            cursor: pointer;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cookie:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+        }
+
+        .chocolate-chip {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #5c3317;
+            border-radius: 50%;
+        }
+
+        .chip1 { top: 30px; left: 40px; }
+        .chip2 { top: 70px; left: 150px; }
+        .chip3 { top: 130px; left: 60px; }
+        .chip4 { top: 100px; left: 30px; }
+        .chip5 { top: 40px; left: 120px; }
+        .chip6 { top: 150px; left: 130px; }
+
+        .cookie-text {
+            color: #5c3317;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 10;
+        }
+
+        .breathing-exercise {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .animation-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+        }
+
+        .teacup {
+            width: 150px;
+            height: 90px;
+            background-color: #fff;
+            border-radius: 0 0 75px 75px;
+            position: absolute;
+            bottom: 30px;
+            left: 25px;
+            border: 4px solid #8a5a44;
+            border-top: none;
+            overflow: hidden;
+        }
+
+        .tea {
+            width: 100%;
+            height: 0%;
+            background-color: #c49a6c;
+            position: absolute;
+            bottom: 0;
+            transition: height 4s;
+        }
+
+        .steam {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            left: 35px;
+            top: 20px;
+            opacity: 0;
+        }
+
+        .steam-path {
+            stroke: #c49a6c;
+            stroke-width: 4;
+            fill: none;
+            opacity: 0.7;
+            stroke-linecap: round;
+        }
+
+        .teacup-handle {
+            width: 40px;
+            height: 50px;
+            border: 4px solid #8a5a44;
+            border-left: none;
+            position: absolute;
+            right: 15px;
+            bottom: 60px;
+            border-radius: 0 25px 25px 0;
+        }
+
+        .saucer {
+            width: 180px;
+            height: 20px;
+            background-color: #fff;
+            border: 4px solid #8a5a44;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+        }
+
+        .instructions {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #5c3317;
+            font-weight: bold;
+        }
+
+        .timer {
+            font-size: 30px;
+            color: #8a5a44;
+            margin-bottom: 20px;
+        }
+
+        .restart-btn {
+            background-color: #8a5a44;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: none;
+            margin: 20px auto;
+        }
+
+        .restart-btn:hover {
+            background-color: #6d4534;
+        }
+
+        footer {
+            margin-top: 20px;
+            color: #8a5a44;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercício de Respiração - Chá da Tarde</h1>
+        <div class="cookie" id="cookieButton">
+            <div class="chocolate-chip chip1"></div>
+            <div class="chocolate-chip chip2"></div>
+            <div class="chocolate-chip chip3"></div>
+            <div class="chocolate-chip chip4"></div>
+            <div class="chocolate-chip chip5"></div>
+            <div class="chocolate-chip chip6"></div>
+            <div class="cookie-text">Clique no Cookie</div>
+        </div>
+        
+        <div class="breathing-exercise" id="breathingExercise">
+            <div class="animation-container">
+                <div class="teacup">
+                    <div class="tea" id="tea"></div>
+                </div>
+                <div class="teacup-handle"></div>
+                <div class="saucer"></div>
+                <svg class="steam" id="steam" viewBox="0 0 100 50">
+                    <path class="steam-path" d="M10,50 Q25,30 40,40 Q55,50 70,35 Q85,20 90,10" />
+                </svg>
+            </div>
+            <div class="instructions" id="instructions">Prepare-se...</div>
+            <div class="timer" id="timer"></div>
+            <button class="restart-btn" id="restartBtn">Repetir Exercício</button>
+        </div>
+        
+        <footer>
+            Um momento para respirar e relaxar, como um delicioso chá da tarde.
+        </footer>
+    </div>
+
+    <script>
+        const cookieButton = document.getElementById('cookieButton');
+        const breathingExercise = document.getElementById('breathingExercise');
+        const instructions = document.getElementById('instructions');
+        const timer = document.getElementById('timer');
+        const tea = document.getElementById('tea');
+        const steam = document.getElementById('steam');
+        const restartBtn = document.getElementById('restartBtn');
+        const body = document.querySelector('body');
+
+        cookieButton.addEventListener('click', startBreathingExercise);
+        restartBtn.addEventListener('click', startBreathingExercise);
+
+        function startBreathingExercise() {
+            // Mostrar exercício de respiração
+            cookieButton.style.display = 'none';
+            breathingExercise.style.display = 'block';
+            restartBtn.style.display = 'none';
+            
+            // Sequência do exercício
+            setTimeout(() => {
+                instructions.textContent = "Prepare-se para o exercício...";
+                timer.textContent = "3";
+                setTimeout(() => {
+                    timer.textContent = "2";
+                    setTimeout(() => {
+                        timer.textContent = "1";
+                        setTimeout(() => {
+                            startBreathing();
+                        }, 1000);
+                    }, 1000);
+                }, 1000);
+            }, 500);
+        }
+
+        function startBreathing() {
+            let count = 1;
+            
+            // Respiração profunda - 4 ciclos
+            breathingCycle(count);
+        }
+
+        function breathingCycle(count) {
+            if (count > 4) {
+                finishExercise();
+                return;
+            }
+
+            // Inspirar
+            body.style.backgroundColor = "#e3d3c0";
+            instructions.textContent = "Inspire lentamente... (encha sua xícara)";
+            tea.style.height = "0%";
+            
+            // Animação de encher a xícara
+            setTimeout(() => {
+                tea.style.height = "90%";
+            }, 100);
+
+            // Contar 4 segundos para inspirar
+            countDown(4, () => {
+                // Segurar
+                body.style.backgroundColor = "#d9c3ab";
+                instructions.textContent = "Segure... (aprecie o aroma)";
+                
+                // Mostrar vapor
+                steam.style.opacity = "1";
+                
+                // Contar 4 segundos para segurar
+                countDown(4, () => {
+                    // Expirar
+                    body.style.backgroundColor = "#f5e9d7";
+                    instructions.textContent = "Expire lentamente... (saboreie o momento)";
+                    
+                    // Esconder vapor gradualmente
+                    steam.style.opacity = "0";
+                    
+                    // Contar 6 segundos para expirar
+                    countDown(6, () => {
+                        // Próximo ciclo
+                        breathingCycle(count + 1);
+                    });
+                });
+            });
+        }
+
+        function countDown(seconds, callback) {
+            let timeLeft = seconds;
+            timer.textContent = timeLeft;
+            
+            const interval = setInterval(() => {
+                timeLeft--;
+                timer.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    callback();
+                }
+            }, 1000);
+        }
+
+        function finishExercise() {
+            instructions.textContent = "Exercício completo! Sinta-se revigorado.";
+            timer.textContent = "";
+            tea.style.height = "70%";
+            restartBtn.style.display = "block";
+            
+            setTimeout(() => {
+                instructions.textContent = "Como foi seu momento de respiração?";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

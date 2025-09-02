@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .educational-nav-container {
+      background-color: #f8f5e9;
+      max-width: 1000px;
+      margin: 40px auto 0;
+      padding: 20px 30px 30px;
+      border-left: 3px solid #a49b8a;
+      border-right: 3px solid #a49b8a;
+      border-bottom: 3px solid #a49b8a;
+      border-radius: 0 0 20px 20px;
+      font-family: 'Georgia', serif;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    
+    .paper-texture {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="none"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="20" y="20"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="40" y="40"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="60" y="60"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="80" y="80"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="100" y="100"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="120" y="120"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="140" y="140"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="160" y="160"/><rect width="1" height="1" fill="%238b7d6b" opacity="0.05" x="180" y="180"/></svg>');
+      z-index: -1;
+      border-radius: 0 0 17px 17px;
+      opacity: 0.8;
+    }
+    
+    .nav-title {
+      text-align: center;
+      color: #5c4b3c;
+      font-size: 22px;
+      font-weight: normal;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 12px;
+    }
+    
+    .nav-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 30%;
+      right: 30%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #a49b8a, transparent);
+    }
+    
+    .journal-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      padding: 0 10px;
+    }
+    
+    .tab-button {
+      position: relative;
+      background-color: #e6dfd0;
+      border: 1px solid #a49b8a;
+      border-radius: 12px;
+      padding: 15px 20px;
+      color: #5c4b3c;
+      font-family: 'Georgia', serif;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.25s;
+      min-width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .tab-button:hover {
+      background-color: #d9ceba;
+      transform: translateY(-3px);
+    }
+    
+    .tab-button.active {
+      background-color: #c4b5a0;
+      box-shadow: 0 0 8px rgba(156, 139, 119, 0.5);
+    }
+    
+    .tab-icon {
+      margin-bottom: 8px;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f5e9;
+      border-radius: 50%;
+      padding: 5px;
+      border: 1px dashed #a49b8a;
+    }
+    
+    .icon-puzzle {
+      width: 20px;
+      height: 20px;
+      position: relative;
+    }
+    
+    .puzzle-piece {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #d9b6b6; /* Rosa suave */
+      border: 1px solid #a49b8a;
+      border-radius: 2px;
+    }
+    
+    .piece-1 {
+      top: 0;
+      left: 0;
+    }
+    
+    .piece-2 {
+      top: 0;
+      right: 0;
+      background-color: #c4d7c8; /* Verde sálvia */
+    }
+    
+    .piece-3 {
+      bottom: 0;
+      left: 0;
+      background-color: #b6cad9; /* Azul bebê */
+    }
+    
+    .piece-4 {
+      bottom: 0;
+      right: 0;
+      background-color: #d9d1b6; /* Amarelo suave */
+    }
+    
+    .icon-book {
+      width: 18px;
+      height: 18px;
+      position: relative;
+      border: 1px solid #a49b8a;
+      border-radius: 2px;
+      background-color: #c4d7c8; /* Verde sálvia */
+    }
+    
+    .book-page {
+      position: absolute;
+      width: 14px;
+      height: 16px;
+      background-color: #f8f5e9;
+      border: 1px solid #a49b8a;
+      border-radius: 1px;
+      top: 0;
+      left: 0;
+      transform: translate(-2px, -2px);
+    }
+    
+    .icon-heart {
+      width: 18px;
+      height: 15px;
+      position: relative;
+      background-color: #d9b6b6; /* Rosa suave */
+      border-radius: 50% 50% 0 0;
+      transform: rotate(45deg);
+    }
+    
+    .icon-heart::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 15px;
+      background-color: #d9b6b6;
+      border-radius: 50% 50% 0 0;
+      top: 0;
+      left: -9px;
+      transform: rotate(-90deg);
+    }
+    
+    .icon-tools {
+      position: relative;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .tool-1 {
+      position: absolute;
+      width: 4px;
+      height: 16px;
+      background-color: #b6cad9; /* Azul bebê */
+      border: 1px solid #a49b8a;
+      transform: rotate(-45deg);
+      top: 2px;
+      left: 10px;
+    }
+    
+    .tool-2 {
+      position: absolute;
+      width: 4px;
+      height: 16px;
+      background-color: #d9d1b6; /* Amarelo suave */
+      border: 1px solid #a49b8a;
+      transform: rotate(45deg);
+      top: 2px;
+      left: 6px;
+    }
+    
+    .icon-game {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      border: 1px solid #a49b8a;
+      border-radius: 3px;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+    
+    .game-square {
+      width: 9px;
+      height: 9px;
+    }
+    
+    .game-square-1 {
+      background-color: #d9b6b6; /* Rosa suave */
+    }
+    
+    .game-square-2 {
+      background-color: #c4d7c8; /* Verde sálvia */
+    }
+    
+    .game-square-3 {
+      background-color: #b6cad9; /* Azul bebê */
+    }
+    
+    .game-square-4 {
+      background-color: #d9d1b6; /* Amarelo suave */
+    }
+    
+    .icon-calendar {
+      width: 18px;
+      height: 18px;
+      border: 1px solid #a49b8a;
+      border-radius: 2px;
+      position: relative;
+      background-color: #f8f5e9;
+    }
+    
+    .calendar-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background-color: #d9b6b6; /* Rosa suave */
+    }
+    
+    .calendar-lines {
+      position: absolute;
+      top: 7px;
+      left: 3px;
+      right: 3px;
+      height: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .calendar-line {
+      height: 1px;
+      background-color: #a49b8a;
+      margin-bottom: 2px;
+    }
+    
+    .page-decoration {
+      position: absolute;
+      left: 30px;
+      bottom: 20px;
+      font-size: 12px;
+      color: #a49b8a;
+      font-style: italic;
+    }
+    
+    .guide-note {
+      position: absolute;
+      right: 30px;
+      bottom: 20px;
+      padding: 8px 12px;
+      background-color: #f0ebd9;
+      border: 1px solid #a49b8a;
+      border-radius: 10px;
+      font-size: 12px;
+      font-style: italic;
+      color: #6b5b4b;
+      max-width: 180px;
+      transform: rotate(2deg);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .paper-clip {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      width: 15px;
+      height: 30px;
+      border: 2px solid #8b7d6b;
+      border-radius: 10px 10px 0 0;
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="educational-nav-container">
+    <div class="paper-texture"></div>
+    
+    <h2 class="nav-title">Caderno de Recursos Educacionais</h2>
+    
+    <div class="journal-tabs">
+      <button class="tab-button">
+        <div class="tab-icon">
+          <div class="icon-puzzle">
+            <div class="puzzle-piece piece-1"></div>
+            <div class="puzzle-piece piece-2"></div>
+            <div class="puzzle-piece piece-3"></div>
+            <div class="puzzle-piece piece-4"></div>
+          </div>
+        </div>
+        Atividades Estruturadas
+      </button>
+      
+      <button class="tab-button">
+        <div class="tab-icon">
+          <div class="icon-book">
+            <div class="book-page"></div>
+          </div>
+        </div>
+        Guia para Educadores
+      </button>
+      
+      <button class="tab-button">
+        <div class="tab-icon">
+          <div class="icon-heart"></div>
+        </div>
+        Apoio Emocional
+      </button>
+      
+      <button class="tab-button">
+        <div class="tab-icon">
+          <div class="icon-tools">
+            <div class="tool-1"></div>
+            <div class="tool-2"></div>
+          </div>
+        </div>
+        Ferramentas Adaptativas
+      </button>
+      
+      <button class="tab-button">
+        <div class="tab-icon">
+          <div class="icon-game">
+            <div class="game-square game-square-1"></div>
+            <div class="game-square game-square-2"></div>
+            <div class="game-square game-square-3"></div>
+            <div class="game-square game-square-4"></div>
+          </div>
+        </div>
+        Jogos Educativos
+      </button>
+      
+      <button class="tab-button">
+        <div class="tab-icon">
+          <div class="icon-calendar">
+            <div class="calendar-header"></div>
+            <div class="calendar-lines">
+              <div class="calendar-line"></div>
+              <div class="calendar-line"></div>
+              <div class="calendar-line"></div>
+            </div>
+          </div>
+        </div>
+        Rotinas & Cronogramas
+      </button>
+    </div>
+    
+    <div class="page-decoration">~ página 1 ~</div>
+    
+    <div class="guide-note">
+      Selecione um dos recursos acima para começar sua jornada...
+      <div class="paper-clip"></div>
+    </div>
+  </div>
+</body>
+</html>

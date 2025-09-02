@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAcup - Um gole de apoio para cada dia no espectro</title>
+    <style>
+        :root {
+            --bg-primary: #F5F5F5;
+            --bg-secondary: #E0DED7;
+            --accent-1: #A8B2A6;
+            --accent-2: #A3A380;
+            --accent-3: #B1D6E8;
+            --accent-4: #BB8588;
+            --text-dark: #424242;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        header {
+            background-color: var(--bg-secondary);
+            border-bottom: 2px solid var(--accent-2);
+            padding: 1rem 0;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: normal;
+            font-family: 'Garamond', serif;
+            color: var(--accent-4);
+        }
+        
+        .logo img {
+            height: 38px;
+            margin-right: 10px;
+            filter: sepia(20%);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            font-family: 'Garamond', serif;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -3px;
+            left: 0;
+            background-color: var(--accent-4);
+            transition: width 0.3s ease;            
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hero {
+            padding: 5rem 0 6rem;
+            text-align: center;
+            background-color: var(--bg-secondary);
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23a3a380' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+            color: var(--text-dark);
+            font-family: 'Garamond', serif;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-dark);
+            font-style: italic;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-4);
+            color: var(--bg-primary);
+            padding: 0.7rem 1.7rem;
+            border: 2px solid var(--accent-4);
+            border-radius: 3px;
+            text-decoration: none;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-4);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-2);
+            color: var(--text-dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent-2);
+            color: var(--bg-primary);
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 2px;
+            background-color: var(--accent-2);
+            margin: 1rem auto 0;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: normal;
+            font-family: 'Garamond', serif;
+            letter-spacing: 1px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .feature-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--accent-1);
+            border-radius: 3px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--accent-1);
+            color: var(--text-dark);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: normal;
+            font-family: 'Garamond', serif;
+        }
+        
+        .content-section {
+            padding: 5rem 0;
+            background-color: var(--bg-secondary);
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23a3a380' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .content-card {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--accent-1);
+            border-radius: 3px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .content-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            filter: sepia(20%);
+        }
+        
+        .content-info {
+            padding: 1.8rem;
+        }
+        
+        .content-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+            font-weight: normal;
+            font-family: 'Garamond', serif;
+        }
+        
+        .content-info p {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .content-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            background-color: var(--bg-secondary);
+            color: var(--text-dark);
+            padding: 0.2rem 0.8rem;
+            border: 1px solid var(--accent-2);
+            border-radius: 2px;
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+        
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--bg-primary);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--accent-1);
+            border-radius: 3px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent-3);
+            opacity: 0.3;
+            font-family: 'Georgia', serif;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
+            padding-left: 0.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            border: 2px solid var(--accent-3);
+            filter: sepia(20%);
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            font-weight: normal;
+            color: var(--text-dark);
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-style: italic;
+        }
+        
+        .cta {
+            padding: 5rem 0;
+            background-color: var(--accent-3);
+            color: var(--text-dark);
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--accent-2),
+                var(--accent-2) 10px,
+                var(--accent-1) 10px,
+                var(--accent-1) 20px
+            );
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: normal;
+            font-family: 'Garamond', serif;
+        }
+        
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+        }
+        
+        .cta .btn {
+            background-color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+        
+        .cta .btn:hover {
+            background-color: transparent;
+            color: var(--text-dark);
+        }
+        
+        footer {
+            background-color: var(--text-dark);
+            color: var(--bg-primary);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-3);
+            font-weight: normal;
+            font-family: 'Garamond', serif;
+            position: relative;
+        }
+        
+        .footer-column h3:after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 1px;
+            background-color: var(--accent-3);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--bg-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-3);
+        }
+        
+        .footer-column p {
+            color: var(--bg-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            color: var(--bg-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-3);
+            border-color: var(--accent-3);
+            color: var(--text-dark);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(224, 222, 215, 0.2);
+            font-size: 0.9rem;
+            color: var(--bg-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="/api/placeholder/38/38" alt="TEAcup Logo"> TEAcup
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#conteudo">Conteúdo</a></li>
+                    <li><a href="#artigos">Artigos</a></li>
+                    <li><a href="#videos">Vídeos</a></li>
+                    <li><a href="#sobre">Sobre nós</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            
+            <div class="hero">
+                <h1>Um gole de apoio para cada dia no espectro</h1>
+                <p>Encontre recursos, orientações e apoio para tutores de pessoas com autismo, desenvolvidos por especialistas e pela comunidade TEA.</p>
+                <div>
+                    <a href="#cadastro" class="btn">Cadastre-se Gratuitamente</a>
+                    <a href="#conheca" class="btn btn-outline">Conheça nossos recursos</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="features" id="inicio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como podemos ajudar</h2>
+                <p>A TEAcup oferece uma variedade de recursos para apoiar tutores de pessoas com autismo em diferentes aspectos do dia a dia.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Conteúdo Educativo</h3>
+                    <p>Materiais instrutivos sobre autismo, comportamento, comunicação e desenvolvimento, elaborados por especialistas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Artigos Especializados</h3>
+                    <p>Publicações sobre estratégias, pesquisas e abordagens atualizadas para o apoio a pessoas no espectro.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Vídeos Tutoriais</h3>
+                    <p>Demonstrações práticas, palestras e depoimentos em formato audiovisual para diferentes estilos de aprendizagem.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Comunidade</h3>
+                    <p>Conecte-se com outros tutores, compartilhe experiências e encontre apoio emocional na nossa comunidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="content-section" id="conteudo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conteúdo em destaque</h2>
+                <p>Explore nossos recursos mais recentes e populares para apoiar sua jornada como tutor.</p>
+            </div>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <img src="/api/placeholder/400/200" alt="Comunicação alternativa" class="content-img">
+                    <div class="content-info">
+                        <div class="content-tags">
+                            <span class="tag">Comunicação</span>
+                            <span class="tag">Recursos</span>
+                        </div>
+                        <h3>Guia de Comunicação Alternativa</h3>
+                        <p>Aprenda diferentes métodos de comunicação para auxiliar pessoas com autismo não-verbais ou com dificuldades na fala.</p>
+                        <a href="#" class="btn">Acessar</a>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <img src="/api/placeholder/400/200" alt="Estratégias sensoriais" class="content-img">
+                    <div class="content-info">
+                        <div class="content-tags">
+                            <span class="tag">Sensorial</span>
+                            <span class="tag">Estratégias</span>
+                        </div>
+                        <h3>Estratégias para Desafios Sensoriais</h3>
+                        <p>Descubra como criar ambientes adequados e estratégias para lidar com sensibilidades sensoriais.</p>
+                        <a href="#" class="btn">Acessar</a>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <img src="/api/placeholder/400/200" alt="Rotinas e transições" class="content-img">
+                    <div class="content-info">
+                        <div class="content-tags">
+                            <span class="tag">Rotinas</span>
+                            <span class="tag">Desenvolvimento</span>
+                        </div>
+                        <h3>Criando Rotinas Eficazes</h3>
+                        <p>Aprenda a estruturar o dia a dia e facilitar transições para proporcionar segurança e previsibilidade.</p>
+                        <a href="#" class="btn">Acessar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que dizem nossos usuários</h2>
+                <p>Depoimentos de tutores que encontraram apoio e transformaram suas experiências com a TEAcup.</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Os recursos da TEAcup transformaram minha abordagem com meu filho. Agora tenho mais confiança e ferramentas para apoiá-lo em seu desenvolvimento."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Autor do depoimento" class="author-img">
+                        <div class="author-info">
+                            <h4>Mariana Silva</h4>
+                            <p>Mãe de Pedro, 8 anos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Como professor, encontrei na TEAcup estratégias práticas para incluir alunos com autismo na sala de aula. Os vídeos tutoriais são especialmente úteis."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Autor do depoimento" class="author-img">
+                        <div class="author-info">
+                            <h4>Carlos Mendes</h4>
+                            <p>Professor de ensino fundamental</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"A comunidade da TEAcup me deu o apoio emocional que eu precisava. É reconfortante saber que não estou sozinha nessa jornada."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Autor do depoimento" class="author-img">
+                        <div class="author-info">
+                            <h4>Fernanda Costa</h4>
+                            <p>Tia e tutora de Mateus, 12 anos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta" id="cadastro">
+        <div class="container">
+            <h2>Comece sua jornada de apoio hoje</h2>
+            <p>Junte-se a milhares de tutores que encontraram suporte, conhecimento e comunidade na TEAcup.</p>
+            <a href="#" class="btn">Cadastre-se Gratuitamente</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>TEAcup</h3>
+                    <p>Um gole de apoio para cada dia no espectro. Recursos e suporte para tutores de pessoas com autismo.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">FB</a>
+                        <a href="#" class="social-icon">IG</a>
+                        <a href="#" class="social-icon">YT</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Navegação</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#conteudo">Conteúdo Educativo</a></li>
+                        <li><a href="#artigos">Artigos</a></li>
+                        <li><a href="#videos">Vídeos</a></li>
+                        <li><a href="#sobre">Sobre nós</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Biblioteca</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Ferramentas</a></li>
+                        <li><a href="#">Materiais para download</a></li>
+                        <li><a href="#">Glossário</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Fale conosco</a></li>
+                        <li><a href="#">Parceiros</a></li>
+                        <li><a href="#">Trabalhe conosco</a></li>
+                        <li><a href="#">Apoie o projeto</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 TEAcup - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
