@@ -35,13 +35,7 @@
 
                  <div class="form-group">
                             <label for="genero">Gênero</label>
-                            <select id="genero" class="form-control" required>
-                                <option value="">Selecione uma opção...</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outro">Outro</option>
-                                <option value="nao-informar">Prefiro não informar</option>
-                            </select>
+                            <select id="genero" class="form-control" required></select>
                         </div>
 
             </div>
@@ -84,36 +78,7 @@
                     
                     <div class="endereco-grupo">
                         <label for="estado">Estado</label>
-                        <select id="estado" name="estado">
-                            <option value="">Selecione uma opção...</option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                        </select>
+                        <select id="estado" name="estado"></select>
                     </div>
 
                 </div>
@@ -121,25 +86,12 @@
                 <div class="col-3">
                     <div class="form-group">
                             <label for="parentesco">Natureza do Vínculo</label>
-                            <select id="parentesco" class="form-control" required>
-                                <option value="">Selecione uma opção...</option>
-                                <option value="filho">Genitor</option>
-                                <option value="enteado">Conjuge</option>
-                                <option value="neto">Filho(a)</option>
-                                <option value="sobrinho">Responsável Legal</option>
-                                <option value="outro">Outro</option>
-                            </select>
+                            <select id="parentesco" class="form-control" required></select>
                         </div>
 
                         <div class="form-group">
-                            <label for="parentesco">Nível de Suporte</label>
-                            <select id="parentesco" class="form-control" required>
-                                <option value="">Selecione uma opção...</option>
-                                <option value="filho">Nível 1 (Suporte Leve)</option>
-                                <option value="enteado">Nível 2 (Suporte Moderado)</option>
-                                <option value="neto">Nível 3 (Suporte Severo)</option>
-                                <option value="outro">Prefiro não Responder</option>
-                            </select>
+                            <label for="nivelSuporte">Nível de Suporte</label>
+                            <select id="nivelSuporte" class="form-control" required></select>
                         </div>
                 </div>  
                         
@@ -174,56 +126,7 @@
         <div class="stars">✶ ✶ ✶</div>
 
 
-        <script>
-            document.getElementById('registrationForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                alert('Formulário enviado com sucesso!');
-            });
-
-            //CPF
-            document.getElementById('cpf').addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                
-                if (value.length > 9) {
-                    value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, '$1.$2.$3-$4');
-                } else if (value.length > 6) {
-                    value = value.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, '$1.$2.$3');
-                } else if (value.length > 3) {
-                    value = value.replace(/^(\d{3})(\d{0,3}).*/, '$1.$2');
-                }
-                
-                e.target.value = value;
-            });
-
-            //CEP
-            document.getElementById('cep').addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 8) value = value.slice(0, 8);
-                
-                if (value.length > 5) {
-                    value = value.replace(/^(\d{5})(\d{0,3}).*/, '$1-$2');
-                }
-                
-                e.target.value = value;
-            });
-
-            //TELEFONE
-            document.getElementById('telefone').addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                
-                if (value.length > 10) {
-                    value = value.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
-                } else if (value.length > 6) {
-                    value = value.replace(/^(\d{2})(\d{4,5})(\d{0,4}).*/, '($1) $2-$3');
-                } else if (value.length > 2) {
-                    value = value.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
-                }
-                
-                e.target.value = value;
-            });
-        </script>
+        <script src="javascript/tea-cad.js"></script>
     </div>    
 </body>
 </html>
